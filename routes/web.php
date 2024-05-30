@@ -33,7 +33,7 @@ Route::put('/buku{id}', [BookController::class, 'update'])->name('buku.update');
 Route::delete('/buku{id}', [BookController::class, 'destroy'])->name('buku.destroy');
 
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-Route::post('category/create', [CategoryController::class, 'store']);
+Route::post('/category/create', [CategoryController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

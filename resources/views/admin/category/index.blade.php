@@ -29,9 +29,9 @@
           <div class="col-lg-18 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Table Buku</h5>
+                <h5 class="card-title fw-semibold mb-4">Table Kategori</h5>
                 <div class="table-responsive">
-                    <a href="{{ route('buku.create') }}" class="btn btn-md btn-success mb-3">Tambah Buku</a>
+                    <a href="javascript:void(0)" class="btn btn-success mb-2" id="btn-create-post">TAMBAH Kategori</a>
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
                       <tr>
@@ -44,12 +44,12 @@
 
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-posts">
                         @forelse ($categories as $categori)
                       <tr>
                         <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $categori->id }}</h6></td>
                         <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">{{ $post->name }}</h6>
+                            <h6 class="fw-semibold mb-1">{{ $categori->name }}</h6>
                         </td>
 
                       @empty
@@ -71,6 +71,8 @@
       </div>
     </div>
   </div>
+@include('admin.category.modal-create')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
@@ -79,7 +81,7 @@
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
 
-  
+
 </body>
 
 </html>

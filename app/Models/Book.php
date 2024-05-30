@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Book extends Model
 {
@@ -11,7 +12,8 @@ class Book extends Model
 
     protected $table = "books";
 
-    public function category(){
-        return $this->belongsToMany(Category::class, 'kategori_id');
-    }
+    protected $fillable = [
+        'judul', 'author', 'publisher', 'detailbuku',
+        'halaman', 'tahunterbit', 'cover_image', 'stock'
+    ];
 }

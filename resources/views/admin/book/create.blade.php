@@ -35,18 +35,38 @@
                         <div class="mb-3">
                             <label for="judul" class="form-label">Judul Buku</label>
                             <input type="text" class="form-control" id="judul" name="judul">
+                            @error('judul')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="author" class="form-label">Author</label>
                             <input type="text" class="form-control" id="author" name="author">
+                            @error('author')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="publisher" class="form-label">Publisher</label>
                             <input type="text" class="form-control" id="publisher" name="publisher">
+                            @error('publisher')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="detailbuku" class="form-label">Detail Buku</label>
                             <input type="text" class="form-control" id="detailbuku" name="detailbuku">
+                            @error('detailbuku')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="halaman" class="form-label">Halaman</label>
@@ -68,6 +88,14 @@
                         <div class="mb-3">
                             <label for="stock" class="form-label">Stock</label>
                             <input type="number" class="form-control" id="stock" name="stock">
+                        </div>
+                        <div class="form-group">
+                            <label for="kategori_id">Kategori:</label>
+                            <select name="kategori_id" id="kategori_id" class="form-control" required>
+                                @foreach ($kategori as $k)
+                                    <option value="{{ $k->id }}">{{ $k->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

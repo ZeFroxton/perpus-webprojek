@@ -27,10 +27,13 @@ class CategoryController extends Controller
 
         //create post
         $category = new Category();
-        $category->name = $request->name_category;
+        $category->name = $request->name;
 
         $category->save();
-        return $category;
+
+        // Redirect ke halaman indeks kategori dengan pesan sukses
+        return redirect()->route('category.index')
+                         ->with('success', 'Kategori created successfully.');
 
     }
 }

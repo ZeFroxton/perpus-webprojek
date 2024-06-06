@@ -14,6 +14,11 @@ class Book extends Model
 
     protected $fillable = [
         'judul', 'author', 'publisher', 'detailbuku',
-        'halaman', 'tahunterbit', 'cover_image', 'stock'
+        'halaman', 'tahunterbit', 'cover_image', 'stock','kategori_id'
     ];
+
+    public function kategori()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

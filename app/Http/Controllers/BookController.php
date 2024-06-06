@@ -15,7 +15,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        $books = Book::with('kategori')->get();
         return view('admin.book.index', compact('books'));
     }
 
@@ -24,9 +24,8 @@ class BookController extends Controller
      */
     public function create()
     {
-
-
-        return view('admin.book.create', );
+        $kategori = Category::all();
+        return view('admin.book.create', compact('kategori'));
     }
 
     /**
@@ -43,6 +42,7 @@ class BookController extends Controller
             'tahunterbit'   => 'required|integer',
             'cover_image'  => 'required|image|mimes:jpeg,jpg,png',
             'stock'   => 'required|integer',
+            'kategori_id' => 'required|exists:categories,id'
 
         ]);
 
@@ -60,6 +60,7 @@ class BookController extends Controller
         $buku->tahunterbit = $request->tahunterbit;
         $buku->cover_image = $request->cover_image->hashName();
         $buku->stock = $request->stock;
+        $buku->kategori_id = $request->kategori_id;
 
 
 

@@ -21,9 +21,10 @@ return new class extends Migration
             $table->integer('tahunterbit')->default(0);
             $table->string('cover_image');
             $table->integer('stock')->default(0);
+            $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
 
-
+            $table->foreign('kategori_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

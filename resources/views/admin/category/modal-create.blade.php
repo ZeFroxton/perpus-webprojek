@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Category</h5>
+                <h5 class="modal-title" id="exampleModalLabel">TAMBAH POST</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,10 +11,23 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label for="name" class="control-label">Nama Kategori</label>
-                    <input type="text" class="form-control" id="name">
+                    <label for="name" class="control-label">Title</label>
+                    <input type="text" class="form-control" id="title">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                 </div>
+
+
+                <div class="form-group">
+                    <label class="control-label">Content</label>
+                    <textarea class="form-control" id="content" rows="4"></textarea>
+                    <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-content"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
+                <button type="button" class="btn btn-primary" id="store">SIMPAN</button>
+            </div>
         </div>
     </div>
 </div>
@@ -39,11 +52,12 @@
         //ajax
         $.ajax({
 
-            url: `/category/create`,
+            url: `/posts`,
             type: "POST",
             cache: false,
             data: {
-                "name": name,
+                "title": title,
+                "content": content,
                 "_token": token
             },
             success:function(response){
@@ -58,13 +72,24 @@
                 });
 
                 //data post
-
+                let post = `
+                    <tr id="index_${response.data.id}">
+                        <td>${response.data.title}</td>
+                        <td>${response.data.content}</td>
+                        <td class="text-center">
+                            <a href="javascript:void(0)" id="btn-edit-post" data-id="${response.data.id}" class="btn btn-primary btn-sm">EDIT</a>
+                            <a href="javascript:void(0)" id="btn-delete-post" data-id="${response.data.id}" class="btn btn-danger btn-sm">DELETE</a>
+                        </td>
+                    </tr>
+                `;
 
                 //append to table
                 $('#table-posts').prepend(post);
 
                 //clear form
-                $('#name').val('');
+                $('#title').val('');
+                $('#content').val('');
+
                 //close modal
                 $('#modal-create').modal('hide');
 

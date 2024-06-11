@@ -17,7 +17,7 @@
             <span class="hide-menu">Home</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('admin.index') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('petugas.index') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
@@ -29,7 +29,7 @@
             <span class="hide-menu">Data Table</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('buku.admin') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('buku.index') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-article"></i>
               </span>
@@ -37,7 +37,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('category.admin') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('category.index') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-alert-circle"></i>
               </span>
@@ -45,16 +45,16 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('admin.table') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('admin.loan.requests') }}" aria-expanded="false">
               <span>
-                <i class="ti ti-cards"></i>
+                <i class="ti ti-file-description"></i>
               </span>
-              <span class="hide-menu">Table Petugas</span>
+              <span class="hide-menu">Aproval</span>
             </a>
           </li>
 
         </ul>
-        
+       
       </nav>
       <!-- End Sidebar navigation -->
     </div>

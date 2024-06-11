@@ -40,12 +40,26 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user',
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect($this->redirectPath($user));
+    }
+    protected function redirectPath(User $user)
+    {
+        switch ($user->role) {
+            case 'admin':
+                return '/admin';
+            case 'petugas':
+                return '/petugas';
+            case 'user':
+                return '/home';
+            default:
+                return RouteServiceProvider::HOME;
+        }
     }
 }

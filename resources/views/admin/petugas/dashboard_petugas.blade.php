@@ -4,16 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Perpus</title>
+  <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
-  <style>
-
-    .book-card {
-        margin: 15px; /* Margin di sekitar setiap card */
-    }
-</style>
-
 </head>
 
 <body>
@@ -21,7 +14,7 @@
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
-   @include('user.components.sidebar')
+   @include('admin.petugas.components.sidebar')
     <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
@@ -32,32 +25,33 @@
       <!--  Header End -->
       <div class="container-fluid">
         <!--  Row 1 -->
+        <h1>Loan Logs</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Book</th>
+                <th>Action</th>
+                <th>Fine Amount</th>
+                <th>Action Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($loanLogs as $log)
+                <tr>
+                    <td>{{ $log->loan->user->name }}</td>
+                    <td>{{ $log->loan->book->judul }}</td>
+                    <td>{{ ucfirst($log->action) }}</td>
+                    <td>{{ $log->fine_amount ? $log->fine_amount : 'N/A' }}</td>
+                    <td>{{ $log->action_date->format('d M Y H:i') }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-        <div class="container mt-4">
-            <div class="row">
-                <div class="py-12">
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                            <div class="max-w-xl">
-                                @include('profile.partials.update-profile-information-form')
-                            </div>
-                        </div>
-
-                        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                            <div class="max-w-xl">
-                                @include('profile.partials.update-password-form')
-                            </div>
-                        </div>
-
-                        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                            <div class="max-w-xl">
-                                @include('profile.partials.delete-user-form')
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+
+      </div>
     </div>
   </div>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
@@ -70,11 +64,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-

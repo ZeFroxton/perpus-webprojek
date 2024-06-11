@@ -58,7 +58,7 @@
                             {{ $categori->name }}
                         </td>
                         {{-- <td>
-                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.category-destroy', $categori->id) }}" method="POST">
+                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('petugas.category-destroy', $categori->id) }}" method="POST">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditKategoriModal">
                                     Tambah Kategori
                                 </button>
@@ -95,7 +95,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="createKategoriForm" action="{{ route('category.store') }}" method="POST">
+                <form id="createKategoriForm" action="{{ route('petugas.category-store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nama Kategori:</label>
@@ -117,7 +117,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="EditKategoriForm" action="{{ route('admin.category-update') }}" method="POST">
+                <form id="EditKategoriForm" action="{{ route('petugas.category-update') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nama Kategori:</label>

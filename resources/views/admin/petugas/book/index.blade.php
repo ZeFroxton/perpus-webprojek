@@ -14,7 +14,7 @@
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
-    @include('components.sidebar')
+    @include('admin.petugas.components.sidebar')
     <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
@@ -26,12 +26,12 @@
       <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
-          <div class="col-lg-25 d-flex align-items-stretch">
+          <div class="col-lg-18 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">Table Buku</h5>
                 <div class="table-responsive">
-                    <a href="{{ route('admin.create') }}" class="btn btn-md btn-success mb-3">Tambah Buku</a>
+                    <a href="{{ route('buku.create') }}" class="btn btn-md btn-success mb-3">Tambah Buku</a>
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
                       <tr>
@@ -84,14 +84,13 @@
                             <h6 class="fw-semibold mb-1">{{ $post->stock }}</h6>
                         </td>
                         <td class="border-bottom-0">
-                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.buku-destroy', $post->id) }}" method="POST">
-                                <a href="{{ route('admin.buku-edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('petugas.buku-destroy', $post->id) }}" method="POST">
+                                <a href="{{ route('petugas.buku-edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                             </form>
                         </td>
-
                       </tr>
                       @empty
                       <div class="alert alert-danger">

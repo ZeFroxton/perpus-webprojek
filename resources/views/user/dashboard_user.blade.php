@@ -35,27 +35,19 @@
 
         <div class="container mt-4">
             <div class="row">
-                <div class="py-12">
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                            <div class="max-w-xl">
-                                @include('profile.partials.update-profile-information-form')
-                            </div>
-                        </div>
+                @foreach ($books as $book)
+                <div class="col-md-3" style="margin-right: 20px"> <!-- Sesuaikan dengan jumlah kolom per baris -->
+                    <div class="card border-dark mb-3"  style="width: 18rem;" >
+                        <img src="{{ asset('/storage/posts/'.$book->cover_image) }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $book->judul }}</h5>
 
-                        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                            <div class="max-w-xl">
-                                @include('profile.partials.update-password-form')
-                            </div>
-                        </div>
-
-                        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                            <div class="max-w-xl">
-                                @include('profile.partials.delete-user-form')
-                            </div>
+                            <p class="card-text"><small class="text-muted">Author: {{ $book->author }}</small></p>
+                            <a href="{{ route('show.buku', $book->id) }}" class="btn btn-primary">Detail Book</a>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -70,11 +62,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-

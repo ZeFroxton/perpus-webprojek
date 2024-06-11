@@ -30,7 +30,7 @@
               <h5 class="card-title fw-semibold mb-4">Forms</h5>
               <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.buku-update', $book->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('petugas.buku-update', $book->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -112,11 +112,11 @@
       </div>
     </div>
   </div>
-  <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/js/sidebarmenu.js"></script>
-  <script src="/assets/js/app.min.js"></script>
-  <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/sidebarmenu.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
 </body>
 
 </html>

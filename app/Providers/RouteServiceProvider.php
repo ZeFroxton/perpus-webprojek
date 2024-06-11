@@ -37,4 +37,22 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
     }
+
+    public function redirectTo()
+{
+    $role = auth()->user()->role;
+
+    switch ($role) {
+        case 'admin':
+            return '/admin';
+        case 'petugas':
+            return '/petugas';
+        case 'user':
+            return '/user';
+        default:
+            return '/';
+    }
+}
+
+
 }

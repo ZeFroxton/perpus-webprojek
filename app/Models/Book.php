@@ -14,7 +14,12 @@ class Book extends Model
 
     protected $fillable = [
         'judul', 'author', 'publisher', 'detailbuku',
-        'halaman', 'tahunterbit', 'cover_image', 'stock','kategori_id'
+        'halaman', 'tahunterbit', 'cover_image', 'stock','kategori_id',
+        'bahasa','isbn'
+    ];
+
+    protected $casts = [
+        'tahunterbit' => 'datetime',
     ];
 
     public function kategori()
@@ -26,4 +31,12 @@ class Book extends Model
     {
         return $this->hasMany(Loan::class);
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function favorites()
+{
+    return $this->hasMany(Favorite::class);
+}
 }

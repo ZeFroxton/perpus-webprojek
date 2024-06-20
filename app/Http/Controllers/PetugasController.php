@@ -31,12 +31,17 @@ class PetugasController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        $profile_photo = $request->file('profile_photo');
+        $profile_photo = $profile_photo->storeAs('public/profilepic', $profile_photo->hashName());
+
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'profile_photo'  =>  $request->profile_photo->hashName(),
             'password' => Hash::make($request->password),
             'role' => 'petugas',
         ]);

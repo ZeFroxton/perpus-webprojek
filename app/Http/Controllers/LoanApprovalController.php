@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Loan;
+use App\Models\LoanLog;
 
 class LoanApprovalController extends Controller
 {
@@ -19,6 +20,19 @@ class LoanApprovalController extends Controller
         $loan = Loan::findOrFail($loanId);
         $loan->is_approved = true;
         $loan->save();
+
+
+        LoanLog::create([
+            'loan_id' => $loan->id,
+            'user_id' => $loan->user_id,
+            'book_id' => $loan->book_id,
+            'action' => 'approved',
+            'action_date' => now()
+        ]);
+
+        $book = $loan->book;
+        $book->stock -= 1;
+        $book->save();
 
         return redirect()->route('admin.loan.requests')->with('success', 'Loan approved successfully.');
     }

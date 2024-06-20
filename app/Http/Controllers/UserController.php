@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Loan;
 use App\Models\LoanLog;
+use App\Models\Favorite;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -32,10 +33,29 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        $post = Book::findOrFail($id);
+        $post = Book::with('reviews.user')->findOrFail($id);
+        $loanPending = Loan::where('book_id', $id)
+            ->where('user_id', Auth::id())
+            ->where('is_approved', false)
+            ->exists();
 
+        $loanApproved = Loan::where('book_id', $id)
+        ->where('user_id', Auth::id())
+        ->where('is_approved', true)
+        ->where('is_returned', false)
+        ->first();
+
+        $loanReturned = Loan::where('book_id', $id)
+        ->where('user_id', Auth::id())
+        ->where('is_returned', true)
+        ->doesntHave('reviews')
+        ->first();
+
+        $isFavorite = Favorite::where('user_id', Auth::id())
+        ->where('book_id', $id)
+        ->exists();
         //render view with post
-        return view('user.show', compact('post'));
+        return view('user.show', compact('post' , 'loanPending' ,'loanApproved', 'loanReturned', 'isFavorite'));
     }
 
     public function editUser(Request $request): View
@@ -122,7 +142,7 @@ class UserController extends Controller
     $book->stock += 1;
     $book->save();
 
-    return redirect()->route('user.loans')->with('success', 'Book returned successfully.');
+    return redirect()->route('show.buku', ['id' => $loan->book_id])->with('success', 'Book returned successfully.');
 }
 
 }

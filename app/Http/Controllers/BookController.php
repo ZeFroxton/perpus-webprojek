@@ -51,10 +51,12 @@ class BookController extends Controller
             'publisher'    => 'required|min:5',
             'detailbuku'    => 'required|min:5',
             'halaman'   => 'required|integer',
-            'tahunterbit'   => 'required|integer',
+            'tahunterbit'   => 'required|date',
             'cover_image'  => 'required|image|mimes:jpeg,jpg,png',
             'stock'   => 'required|integer',
-            'kategori_id' => 'required|exists:categories,id'
+            'kategori_id' => 'required|exists:categories,id',
+            'bahasa' => 'required|min:5',
+            'isbn' => 'required|integer'
 
         ]);
 
@@ -73,6 +75,8 @@ class BookController extends Controller
         $buku->cover_image = $request->cover_image->hashName();
         $buku->stock = $request->stock;
         $buku->kategori_id = $request->kategori_id;
+        $buku->bahasa = $request->bahasa;
+        $buku->isbn = $request->isbn;
 
 
 
@@ -93,10 +97,12 @@ class BookController extends Controller
             'publisher'    => 'required|min:5',
             'detailbuku'    => 'required|min:5',
             'halaman'   => 'required|integer',
-            'tahunterbit'   => 'required|integer',
+            'tahunterbit'   => 'required|date',
             'cover_image'  => 'required|image|mimes:jpeg,jpg,png',
             'stock'   => 'required|integer',
-            'kategori_id' => 'required|exists:categories,id'
+            'kategori_id' => 'required|exists:categories,id',
+            'bahasa' => 'required|min:5',
+            'isbn' => 'required|integer'
 
         ]);
 
@@ -115,6 +121,8 @@ class BookController extends Controller
         $buku->cover_image = $request->cover_image->hashName();
         $buku->stock = $request->stock;
         $buku->kategori_id = $request->kategori_id;
+        $buku->bahasa = $request->bahasa;
+        $buku->isbn = $request->isbn;
 
 
 
@@ -159,10 +167,12 @@ class BookController extends Controller
             'publisher'    => 'required|min:5',
             'detailbuku'    => 'required|min:5',
             'halaman'   => 'required|integer',
-            'tahunterbit'   => 'required|integer',
+            'tahunterbit'   => 'required|date',
             'cover_image'  => 'required|image|mimes:jpeg,jpg,png',
             'stock'   => 'required|integer',
-            'kategori_id' => 'required|exists:categories,id'
+            'kategori_id' => 'required|exists:categories,id',
+            'bahasa' => 'required|min:5',
+            'isbn' => 'required|integer'
 
 
         ]);
@@ -188,7 +198,9 @@ class BookController extends Controller
                 'tahunterbit'   => $request->tahunterbit,
                 'cover_image'  =>  $request->cover_image->hashName(),
                 'stock'   => $request->stock,
-                'kategori_id' => $request->kategori_id
+                'kategori_id' => $request->kategori_id,
+                'bahasa' => $request->bahasa,
+                'isbn' => $request->isbn
             ]);
 
         } else {
@@ -202,7 +214,9 @@ class BookController extends Controller
                 'halaman'   => $request->halaman,
                 'tahunterbit'   => $request->tahunterbit,
                 'stock'   => $request->stock,
-                'kategori_id' => $request->kategori_id
+                'kategori_id' => $request->kategori_id,
+                'bahasa' => $request->bahasa,
+                'isbn' => $request->isbn
             ]);
         }
 
@@ -223,11 +237,12 @@ class BookController extends Controller
             'publisher'    => 'required|min:5',
             'detailbuku'    => 'required|min:5',
             'halaman'   => 'required|integer',
-            'tahunterbit'   => 'required|integer',
+            'tahunterbit'   => 'required|date',
             'cover_image'  => 'required|image|mimes:jpeg,jpg,png',
             'stock'   => 'required|integer',
-            'kategori_id' => 'required|exists:categories,id'
-
+            'kategori_id' => 'required|exists:categories,id',
+            'bahasa' => 'required|min:5',
+            'isbn' => 'required|integer'
 
         ]);
 
@@ -252,7 +267,9 @@ class BookController extends Controller
                 'tahunterbit'   => $request->tahunterbit,
                 'cover_image'  =>  $request->cover_image->hashName(),
                 'stock'   => $request->stock,
-                'kategori_id' => $request->kategori_id
+                'kategori_id' => $request->kategori_id,
+                'bahasa' => $request->bahasa,
+                'isbn' => $request->isbn
             ]);
 
         } else {
@@ -266,7 +283,9 @@ class BookController extends Controller
                 'halaman'   => $request->halaman,
                 'tahunterbit'   => $request->tahunterbit,
                 'stock'   => $request->stock,
-                'kategori_id' => $request->kategori_id
+                'kategori_id' => $request->kategori_id,
+                'bahasa' => $request->bahasa,
+                'isbn' => $request->isbn
             ]);
         }
 

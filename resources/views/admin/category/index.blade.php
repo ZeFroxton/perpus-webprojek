@@ -16,7 +16,7 @@
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
-    @include('admin.petugas.components.sidebar')
+    @include('components.sidebar')
     <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
@@ -57,18 +57,40 @@
                         <td class="border-bottom-0">
                             {{ $categori->name }}
                         </td>
-                        {{-- <td>
+                        <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.category-destroy', $categori->id) }}" method="POST">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditKategoriModal">
-                                    Tambah Kategori
+                                    Edit Kategori
                                 </button>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                             </form>
 
-                        </td> --}}
+                        </td>
                       </tr>
+                      <div class="modal fade" id="EditKategoriModal" tabindex="-1" aria-labelledby="EditKategoriModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="EditKategoriForm" action="{{ route('admin.category-update', $categori->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group">
+                                            <label for="name">Nama Kategori:</label>
+                                            <input type="text" name="name" id="name" class="form-control" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
                       @endforeach
                     </tbody>
                   </table>
@@ -107,27 +129,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="EditKategoriModal" tabindex="-1" aria-labelledby="EditKategoriModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Category</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="EditKategoriForm" action="{{ route('admin.category-update') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Nama Kategori:</label>
-                        <input type="text" name="name" id="name" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-        </div>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

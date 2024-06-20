@@ -30,7 +30,7 @@
               <h5 class="card-title fw-semibold mb-4">Forms</h5>
               <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.store-petugas') }}">
+                    <form method="POST" action="{{ route('admin.store-petugas') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -60,6 +60,10 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="profile_photo" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="profile_photo" name="profile_photo">
+                          </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>

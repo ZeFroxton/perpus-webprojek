@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Loan;
 use App\Models\Book;
 use App\Models\LoanLog;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,8 @@ class LoanController extends Controller
         'user_id' => Auth::id(),
         'book_id' => $request->book_id,
         'borrow_date' => now(),
-        'return_date' => $request->return_date
+        'return_date' => $request->return_date,
+        'is_approved' => false,
     ]);
     $loan->save();
 
@@ -36,15 +38,13 @@ class LoanController extends Controller
         'loan_id' => $loan->id,
         'user_id' => Auth::id(),
         'book_id' => $loan->book_id,
-        'action' => 'borrowed',
+        'action' => 'requested',
         'action_date' => now()
     ]);
 
-    $book->stock -= 1;
-    $book->save();
 
     return redirect()->route('show.buku', ['id' => $request->book_id])
-    ->with('success', 'Loan request submitted')
+    ->with('success', 'Loan request submitted. Waiting for approval.')
     ->with('swal', true);
 }
 
@@ -90,6 +90,10 @@ class LoanController extends Controller
             'fine_amount' => $fine
         ]);
 
+        $book = $loan->book;
+        $book->stock += 1;
+        $book->save();
+
         return redirect()->route('profile')->with('success', 'Book returned successfully.');
     }
 
@@ -116,4 +120,31 @@ class LoanController extends Controller
 
         return response()->json($loans, 200);
     }
+    public function submitReview(Request $request, $loanId)
+{
+    $request->validate([
+        'rating' => 'required|integer|min:1|max:5',
+        'review' => 'required|string',
+    ]);
+
+    $loan = Loan::findOrFail($loanId);
+
+    if ($loan->user_id !== Auth::id()) {
+        return redirect()->route('user.loans')->with('error', 'Unauthorized action.');
+    }
+
+    Review::create([
+        'user_id' => Auth::id(),
+        'book_id' => $loan->book_id,
+        'loan_id' => $loanId,
+        'rating' => $request->rating,
+        'review' => $request->review,
+    ]);
+
+    return redirect()->route('show.buku', ['id' => $loan->book_id])
+        ->with('success', 'Thank you for your review.');
 }
+
+}
+
+

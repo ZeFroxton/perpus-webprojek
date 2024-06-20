@@ -6,9 +6,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoanApprovalController;
+use App\Models\Favorite;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,16 +42,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/buku/edit-admin/{id}', [BookController::class, 'editAdmin'])->name('admin.buku-edit');
     Route::put('admin/buku/edit-admin/{id}', [BookController::class, 'updateAdmin'])->name('admin.buku-update');
 
-    Route::delete('/buku{id}', [BookController::class, 'destroyAdmin'])->name('admin.buku-destroy');
+    Route::delete('/buku/delete{id}', [BookController::class, 'destroyAdmin'])->name('admin.buku-destroy');
 
     Route::get('/admin/table-petugas', [PetugasController::class, 'tablePetugas'])->name('admin.table');
     Route::get('/admin/create-petugas', [PetugasController::class, 'showCreatePetugasForm'])->name('admin.create-petugas');
     Route::post('/admin/create-petugas', [PetugasController::class, 'createPetugas'])->name('admin.store-petugas');
     Route::get('/admin/category', [CategoryController::class, 'indexAdmin'])->name('category.admin');
     Route::post('/category/create', [CategoryController::class, 'storeAdmin'])->name('category.store');
-    Route::put('/category/edit-petugas/{id}', [CategoryController::class, 'updateAdmin'])->name('admin.category-update');
+    Route::put('/category/edit{id}', [CategoryController::class, 'updateAdmin'])->name('admin.category-update');
 
-    Route::delete('/category{id}', [CategoryController::class, 'destroyAdmin'])->name('admin.category-destroy');
+    Route::delete('/category/delete{id}', [CategoryController::class, 'destroyAdmin'])->name('admin.category-destroy');
     // Tambahkan route lainnya untuk admin
 });
 //Route untuk user
@@ -61,6 +63,11 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     Route::get('/loans', [UserController::class, 'loanindex'])->name('user.loans');
     Route::patch('/loans/{loan}/return', [UserController::class, 'returnBook'])->name('return.book');
+    Route::post('/loans/{loanId}/review', [LoanController::class, 'submitReview'])->name('submit.review');
+    //favourite
+    Route::post('/book/{book}/favorite', [FavoriteController::class, 'addToFavorites'])->name('add.to.favorites');
+    Route::delete('/book/{book}/favorite', [FavoriteController::class, 'removeFromFavorites'])->name('remove.from.favorites');
+
 });
 //Route untuk petugas
 Route::middleware(['auth', 'role:petugas'])->group(function () {
@@ -68,7 +75,7 @@ Route::middleware(['auth', 'role:petugas'])->group(function () {
     //create category
     Route::get('/category', [CategoryController::class, 'indexPetugas'])->name('category.index');
     Route::post('/category/create-petugas', [CategoryController::class, 'storePetugas'])->name('petugas.category-store');
-    Route::put('/category/edit-petugas/{id}', [CategoryController::class, 'updatePetugas'])->name('petugas.category-update');
+    Route::put('/category/edit-petugas{id}', [CategoryController::class, 'updatePetugas'])->name('petugas.category-update');
     Route::delete('/category{id}', [CategoryController::class, 'destroyPetugas'])->name('petugas.category-destroy');
     //create buku
     Route::get('/buku', [BookController::class, 'indexPetugas'])->name('buku.index');
@@ -77,7 +84,7 @@ Route::middleware(['auth', 'role:petugas'])->group(function () {
     Route::get('/buku/edit-petugas/{id}', [BookController::class, 'editPetugas'])->name('petugas.buku-edit');
     Route::put('/buku/edit-petugas/{id}', [BookController::class, 'updatePetugas'])->name('petugas.buku-update');
 
-    Route::delete('/buku{id}', [BookController::class, 'destroyAdmin'])->name('admin.buku-destroy');
+    Route::delete('/buku{id}', [BookController::class, 'destroypetugas'])->name('petugas.buku-destroy');
     //loan aproval
     Route::get('/admin/loan-requests', [LoanApprovalController::class, 'index'])->name('admin.loan.requests');
     Route::post('/admin/loan-approve/{loan}', [LoanApprovalController::class, 'approve'])->name('admin.loan.approve');

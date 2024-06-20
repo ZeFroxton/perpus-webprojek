@@ -33,7 +33,7 @@
               <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">Table Daftar Petugas</h5>
                 <div class="table-responsive">
-                    <a href="{{ route('admin.create-petugas') }}" class="btn btn-md btn-success mb-3">Tambah Buku</a>
+                    <a href="{{ route('admin.create-petugas') }}" class="btn btn-md btn-success mb-3">Tambah Petugas</a>
                   <table class="table text-nowrap mb-0 align-middle" id="kategoriTable">
                     <thead class="text-dark fs-4">
                       <tr>

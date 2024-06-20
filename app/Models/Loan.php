@@ -28,4 +28,10 @@ class Loan extends Model
     {
         return $this->belongsTo(Book::class);
     }
+
+    public function reviews()
+{
+    return $this->hasMany(Review::class);
+}
+
 }

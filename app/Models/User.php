@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'profile_photo',
         'password',
         'role',
     ];
@@ -48,4 +49,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Loan::class);
     }
+
+    public function favorites()
+{
+    return $this->hasMany(Favorite::class);
+}
+
+public function reviews()
+{
+    return $this->hasMany(Review::class);
+}
+
 }

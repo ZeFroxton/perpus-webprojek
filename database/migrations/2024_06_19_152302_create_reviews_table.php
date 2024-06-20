@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('loan_logs', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('loan_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->string('action', 20);
-            $table->integer('fine_amount')->default(0);
-            $table->timestamp('action_date');
+            $table->foreignId('loan_id')->constrained()->onDelete('cascade');
+            $table->integer('rating')->check(function ($rating) {
+                return $rating >= 1 && $rating <= 5;
+            });
+            $table->text('review');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('loan_logs');
+        Schema::dropIfExists('reviews');
     }
 };

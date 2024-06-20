@@ -71,7 +71,7 @@ class CategoryController extends Controller
 
         $kategori = Category::findOrFail($id);
         $kategori->update([
-            'name' => $request->nama
+            'name' => $request->name
         ]);
 
         return redirect()->route('category.admin')->with('success', 'Kategori berhasil diperbarui.');
@@ -85,7 +85,7 @@ class CategoryController extends Controller
 
         $kategori = Category::findOrFail($id);
         $kategori->update([
-            'name' => $request->nama
+            'name' => $request->name
         ]);
 
         return redirect()->route('category.index')->with('success', 'Kategori berhasil diperbarui.');

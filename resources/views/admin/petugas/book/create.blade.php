@@ -71,10 +71,20 @@
                         <div class="mb-3">
                             <label for="halaman" class="form-label">Halaman</label>
                             <input type="number" class="form-control" id="halaman" name="halaman">
+                            @error('halaman')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tahunterbit" class="form-label">Tahun Terbit</label>
-                            <input type="number" class="form-control" id="tahunterbit" name="tahunterbit">
+                            <input type="date" class="form-control" id="tahunterbit" name="tahunterbit">
+                            @error('tahunterbit')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         </div>
                         <div class="mb-3">
                             <label class="font-weight-bold">GAMBAR</label>
@@ -88,6 +98,29 @@
                         <div class="mb-3">
                             <label for="stock" class="form-label">Stock</label>
                             <input type="number" class="form-control" id="stock" name="stock">
+                            @error('stock')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="bahasa" class="form-label">Bahasa</label>
+                            <input type="text" class="form-control" id="bahasa" name="bahasa">
+                            @error('bahasa')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="isbn" class="form-label">Isbn</label>
+                            <input type="number" class="form-control" id="isbn" name="isbn">
+                            @error('isbn')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="kategori_id">Kategori:</label>

@@ -75,7 +75,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="tahunterbit" class="form-label">Tahun Terbit</label>
-                            <input type="number" class="form-control" id="tahunterbit" name="tahunterbit" value="{{ old('tahunterbit', $book->tahunterbit) }}">
+                            <input type="date" class="form-control" id="tahunterbit" name="tahunterbit" value="{{ old('tahunterbit', $book->tahunterbit) }}">
                         </div>
                         <div class="mb-3">
                             <label class="font-weight-bold">GAMBAR</label>

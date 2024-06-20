@@ -24,7 +24,7 @@
                   <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                 </a>
                 <p class="text-center">Your Social Campaigns</p>
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -33,6 +33,10 @@
                   <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
                     <input type="email" class="form-control" id="email" name="email" :value="old('email')" required autocomplete="username">
+                  </div>
+                  <div class="mb-3">
+                    <label for="profile_photo" class="form-label">Profile Picture</label>
+                    <input type="file" class="form-control" id="profile_photo" name="profile_photo">
                   </div>
                   <div class="mb-4">
                     <label for="password" class="form-label">Password</label>

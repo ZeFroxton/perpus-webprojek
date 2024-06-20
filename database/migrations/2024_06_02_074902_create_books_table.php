@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('publisher');
             $table->string('detailbuku');
             $table->integer('halaman')->default(0);
-            $table->integer('tahunterbit')->default(0);
+            $table->date('tahunterbit');
             $table->string('cover_image');
             $table->integer('stock')->default(0);
             $table->unsignedBigInteger('kategori_id');
